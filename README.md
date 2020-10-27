@@ -48,7 +48,7 @@ provider "gitlab" {
 }
 
 module "devsecops-sandbox-config" {
-  source = "git::https://code.saicinnovationfactory.com/dau/move-to-repo-one/terraform-modules/terraform-devsecops-sandbox-config.git?ref=tags/X.Y.Z"
+  source = "git::https://https://github.com/saic-oss/terraform-devsecops-sandbox-config.git?ref=tags/X.Y.Z"
   gitlab_user_count = var.gitlab_user_count
   gitlab_group_name = var.gitlab_group_name
 }
