@@ -34,7 +34,7 @@ The purpose of this module is to configure a new DevSecOps "sandbox" that has be
 
 For convenience, a Taskfile has been provided, to be used with [go-task][go-task]
 
-```
+```sh
 task applyExample
 task destroyExample
 ```
