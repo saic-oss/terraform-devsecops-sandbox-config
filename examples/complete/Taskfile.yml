@@ -1,0 +1,33 @@
+applyExample:
+  desc: Apply the example infra
+  cmds:
+    - task: applyExample1
+    - task: applyExample2
+
+applyExample1:
+  dir: 1-infra
+  cmds:
+    - terraform apply -auto-approve -target=module.subnets
+    - terraform apply -auto-approve
+
+applyExample2:
+  dir: 2-gitlab_config
+  cmds:
+    - terraform apply -auto-approve
+
+destroyExample:
+  desc: Destroy the example infra
+  cmds:
+    - task: destroyExample2
+    - task: destroyExample1
+
+destroyExample1:
+  dir: 1-infra
+  cmds:
+    - terraform destroy -auto-approve -target=module.rancher-k8s-cluster.rancher2_cluster.default
+    - terraform destroy -auto-approve
+
+destroyExample2:
+  dir: 2-gitlab_config
+  cmds:
+    - terraform destroy -auto-approve
