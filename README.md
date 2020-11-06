@@ -83,14 +83,14 @@ This module will use SemVer, and will stay on v0.X for the foreseeable future
 
 | Name | Version |
 |------|---------|
-| terraform | >= 0.13.0, < 0.14.0 |
-| gitlab | >= 3.0.0, < 4.0.0 |
+| terraform | >= 0.13.0 |
+| gitlab | >= 3.0.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| gitlab | >= 3.0.0, < 4.0.0 |
+| gitlab | >= 3.0.0 |
 | random | n/a |
 
 ## Inputs
