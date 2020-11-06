@@ -1,33 +1,36 @@
-applyExample:
-  desc: Apply the example infra
-  cmds:
-    - task: applyExample1
-    - task: applyExample2
+# https://taskfile.dev
 
-applyExample1:
-  dir: 1-infra
-  cmds:
-    - terraform apply -auto-approve -target=module.subnets
-    - terraform apply -auto-approve
+version: "3"
 
-applyExample2:
-  dir: 2-gitlab_config
-  cmds:
-    - terraform apply -auto-approve
+includes:
+  1-infra:
+    taskfile: ./1-infra
+    dir: ./1-infra
+  2-gitlab_config:
+    taskfile: ./2-gitlab_config
+    dir: ./2-gitlab_config
 
-destroyExample:
-  desc: Destroy the example infra
-  cmds:
-    - task: destroyExample2
-    - task: destroyExample1
+tasks:
+  init:
+    desc: Run terraform init
+    cmds:
+      - task: 1-infra:init
+      - task: 2-gitlab_config:init
 
-destroyExample1:
-  dir: 1-infra
-  cmds:
-    - terraform destroy -auto-approve -target=module.rancher-k8s-cluster.rancher2_cluster.default
-    - terraform destroy -auto-approve
+  plan:
+    desc: Run terraform plan
+    cmds:
+      - task: 1-infra:plan
+      - task: 2-gitlab_config:plan
 
-destroyExample2:
-  dir: 2-gitlab_config
-  cmds:
-    - terraform destroy -auto-approve
+  apply:
+    desc: Run terraform apply
+    cmds:
+      - task: 1-infra:apply
+      - task: 2-gitlab_config:apply
+
+  destroy:
+    desc: Run terraform destroy
+    cmds:
+      - task: 2-gitlab_config:destroy
+      - task: 1-infra:destroy
