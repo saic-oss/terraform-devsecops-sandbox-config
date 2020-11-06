@@ -32,11 +32,14 @@ The purpose of this module is to configure a new DevSecOps "sandbox" that has be
 
 #### Complete Example
 
-For convenience, a Taskfile has been provided, to be used with [go-task][go-task]
+See [examples/complete](examples/complete) for an example of how to use this module. For your convenience a Taskfile has been provided to be used with [go-task][go-task].
 
 ```sh
-task applyExample
-task destroyExample
+cd examples/complete
+task init
+task plan
+task apply
+task destroy
 ```
 
 Here's a minimal example:
