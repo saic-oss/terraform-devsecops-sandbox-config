@@ -52,3 +52,10 @@ resource "gitlab_project" "venus-demo" {
   lfs_enabled                                      = true
   shared_runners_enabled                           = false
 }
+
+resource "gitlab_project_hook" "venus-hook" {
+  project         = "${var.gitlab_group_name}/${gitlab_project.venus-demo.name}"
+  url             = "${data.terraform_remote_state.remote_state.outputs.jenkins_endpoint}/project/${var.gitlab_group_name}/${gitlab_project.venus-demo.name}"
+  push_events     = true
+  tag_push_events = true
+}
