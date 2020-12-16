@@ -1,7 +1,7 @@
 <org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject plugin="workflow-multibranch@2.21">
     <actions/>
-    <description>${job_description}</description>
-    <displayName>${job_name}</displayName>
+    <description>{{ .Parameters.description }}</description>
+    <displayName>{{ .Parameters.name }}</displayName>
     <properties>
         <com.cloudbees.hudson.plugins.folder.properties.AuthorizationMatrixProperty>
             <inheritanceStrategy class="org.jenkinsci.plugins.matrixauth.inheritance.InheritParentStrategy"/>
@@ -34,8 +34,8 @@
             <jenkins.branch.BranchSource>
                 <source class="jenkins.plugins.git.GitSCMSource" plugin="git@4.2.2">
                     <id>0f6a5204-c1ee-44e3-89d2-b6a7a73243bd</id>
-                    <remote>${repository}</remote>
-                    <credentialsId>${credentials}</credentialsId>
+                    <remote>{{ .Parameters.repository }}</remote>
+                    <credentialsId>{{ .Parameters.credentials }}</credentialsId>
                     <traits>
                         <jenkins.plugins.git.traits.BranchDiscoveryTrait/>
                         <jenkins.plugins.git.traits.TagDiscoveryTrait/>
@@ -50,6 +50,6 @@
     </sources>
     <factory class="org.jenkinsci.plugins.workflow.multibranch.WorkflowBranchProjectFactory">
         <owner class="org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject" reference="../.."/>
-        <scriptPath>${script_path}</scriptPath>
+        <scriptPath>{{ .Parameters.scriptPath }}</scriptPath>
     </factory>
 </org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject>
