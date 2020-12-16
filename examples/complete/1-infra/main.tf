@@ -62,7 +62,7 @@ module "subnets" {
 }
 
 module "rke_rancher_master_cluster" {
-  source                          = "git::https://github.com/saic-oss/terraform-aws-rke-rancher-master-cluster.git?ref=tags/0.3.1"
+  source                          = "git::https://github.com/saic-oss/terraform-aws-rke-rancher-master-cluster.git?ref=tags/0.4.0"
   additional_tag_map              = {}
   instance_type                   = var.controlplane_instance_type
   kubernetes_version              = var.master_cluster_kubernetes_version
@@ -93,7 +93,7 @@ module "rke_rancher_master_cluster" {
 }
 
 module "rancher-k8s-cluster" {
-  source                     = "git::https://github.com/saic-oss/terraform-aws-rancher-k8s-cluster.git?ref=tags/0.4.2"
+  source                     = "git::https://github.com/saic-oss/terraform-aws-rancher-k8s-cluster.git?ref=tags/0.4.6"
   additional_tag_map         = {}
   kubernetes_version         = var.worker_cluster_kubernetes_version
   name                       = "${var.name}-workload"
@@ -123,12 +123,14 @@ module "rancher-k8s-cluster" {
 }
 
 module "k8s-devsecops-sandbox" {
-  source                   = "git::https://github.com/saic-oss/terraform-k8s-devsecops-sandbox.git?ref=tags/0.3.0"
+  source                   = "git::https://github.com/saic-oss/terraform-k8s-devsecops-sandbox.git?ref=tags/0.4.3"
   cluster_issuer           = "letsencrypt-${var.letsencrypt_environment}"
   kubeconfig_file_contents = module.rancher-k8s-cluster.cluster_kubeconfig
   gitlab_host_name         = "gl.${random_pet.default.id}.${var.hosted_zone_domain_name}"
   registry_host_name       = "reg.gl.${random_pet.default.id}.${var.hosted_zone_domain_name}"
   minio_host_name          = "min.gl.${random_pet.default.id}.${var.hosted_zone_domain_name}"
+  jenkins_host_name        = "jenkins.${random_pet.default.id}.${var.hosted_zone_domain_name}"
+  jenkins_admin_email      = var.jenkins_admin_email
   hosted_zone_id           = var.hosted_zone_id
   elb_dns_name             = module.rancher-k8s-cluster.elb_dns_name
   elb_zone_id              = module.rancher-k8s-cluster.elb_zone_id
