@@ -16,3 +16,4 @@ worker_min_size                   = 3
 worker_max_size                   = 3
 worker_desired_capacity           = 3
 protect_from_scale_in             = false
+jenkins_admin_email               = "jenkinsadmin@example.com"
