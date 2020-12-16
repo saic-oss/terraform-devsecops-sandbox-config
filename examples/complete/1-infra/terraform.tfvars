@@ -1,6 +1,6 @@
 region                            = "us-east-1"
-namespace                         = "example"
-stage                             = "test"
+namespace                         = "saic-oss"
+stage                             = "example"
 name                              = "terraform-devsecops-sandbox-config"
 controlplane_instance_type        = "t3a.medium"
 worker_instance_type              = "t3a.large"
@@ -16,3 +16,4 @@ worker_min_size                   = 3
 worker_max_size                   = 3
 worker_desired_capacity           = 3
 protect_from_scale_in             = false
+jenkins_admin_email               = "jenkinsadmin@example.com"
