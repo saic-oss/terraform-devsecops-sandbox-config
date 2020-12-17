@@ -100,3 +100,8 @@ variable "protect_from_scale_in" {
   type        = bool
   description = "If true, AutoScaling Group protect_from_scale_in will be set to true. This should be true in production, but it will prevent you from destroying the stack since the ASG will get stuck waiting for instances to be manually terminated"
 }
+
+variable "jenkins_admin_email" {
+  type        = string
+  description = "email address of the Jenkins admin"
+}
