@@ -20,5 +20,6 @@ module "devsecops-sandbox-config" {
   source            = "../../.."
   gitlab_user_count = var.gitlab_user_count
   gitlab_group_name = var.gitlab_group_name
+  gitlab_endpoint   = data.terraform_remote_state.remote_state.outputs.gitlab_endpoint
   jenkins_endpoint  = data.terraform_remote_state.remote_state.outputs.jenkins_endpoint
 }

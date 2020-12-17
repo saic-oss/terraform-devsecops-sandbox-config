@@ -12,6 +12,11 @@ variable "gitlab_group_name" {
   }
 }
 
+variable "gitlab_endpoint" {
+  type        = string
+  description = "Endpoint for Gitlab"
+}
+
 variable "jenkins_endpoint" {
   type        = string
   description = "Endpoint for Jenkins"
