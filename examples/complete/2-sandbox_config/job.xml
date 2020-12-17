@@ -5,6 +5,7 @@
     <properties>
         <com.cloudbees.hudson.plugins.folder.properties.AuthorizationMatrixProperty>
             <inheritanceStrategy class="org.jenkinsci.plugins.matrixauth.inheritance.InheritGlobalStrategy"/>
+            <permission>hudson.model.Item.Build:authenticated</permission>
             <permission>hudson.model.Item.Read:authenticated</permission>
             <permission>hudson.model.View.Read:authenticated</permission>
         </com.cloudbees.hudson.plugins.folder.properties.AuthorizationMatrixProperty>
