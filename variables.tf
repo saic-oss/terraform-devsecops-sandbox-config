@@ -11,3 +11,8 @@ variable "gitlab_group_name" {
     error_message = "Invalid group name. May only contain lowercase letters, numbers, and the (-) symbol, and cannot begin or end with (-)."
   }
 }
+
+variable "jenkins_endpoint" {
+  type        = string
+  description = "Endpoint for Jenkins"
+}

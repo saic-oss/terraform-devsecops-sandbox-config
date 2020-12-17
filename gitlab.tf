@@ -55,7 +55,7 @@ resource "gitlab_project" "demo" {
 
 resource "gitlab_project_hook" "demo-hook" {
   project         = "${var.gitlab_group_name}/${gitlab_project.demo.name}"
-  url             = "${data.terraform_remote_state.remote_state.outputs.jenkins_endpoint}/project/${gitlab_project.demo.name}"
+  url             = "${var.jenkins_endpoint}/project/${gitlab_project.demo.name}"
   push_events     = true
   tag_push_events = true
 }
