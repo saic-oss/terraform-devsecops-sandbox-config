@@ -4,7 +4,9 @@
     <displayName>{{ .Parameters.name }}</displayName>
     <properties>
         <com.cloudbees.hudson.plugins.folder.properties.AuthorizationMatrixProperty>
-            <inheritanceStrategy class="org.jenkinsci.plugins.matrixauth.inheritance.InheritParentStrategy"/>
+            <inheritanceStrategy class="org.jenkinsci.plugins.matrixauth.inheritance.InheritGlobalStrategy"/>
+            <permission>hudson.model.Item.Read:authenticated</permission>
+            <permission>hudson.model.View.Read:authenticated</permission>
         </com.cloudbees.hudson.plugins.folder.properties.AuthorizationMatrixProperty>
         <org.jenkinsci.plugins.docker.workflow.declarative.FolderConfig plugin="docker-workflow@1.23">
             <dockerLabel/>
