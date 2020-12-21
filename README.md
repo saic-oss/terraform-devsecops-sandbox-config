@@ -85,20 +85,24 @@ This module will use SemVer, and will stay on v0.X for the foreseeable future
 |------|---------|
 | terraform | >= 0.13.0 |
 | gitlab | >= 3.0.0 |
+| jenkins | >= 0.6.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
 | gitlab | >= 3.0.0 |
+| jenkins | >= 0.6.0 |
 | random | n/a |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| gitlab\_endpoint | Endpoint for Gitlab | `string` | n/a | yes |
 | gitlab\_group\_name | Name to use for new GitLab group. | `string` | n/a | yes |
 | gitlab\_user\_count | Number of users to create. Must be at least 1 | `number` | n/a | yes |
+| jenkins\_endpoint | Endpoint for Jenkins | `string` | n/a | yes |
 
 ## Outputs
 
