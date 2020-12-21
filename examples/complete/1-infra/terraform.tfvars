@@ -1,6 +1,6 @@
 region                            = "us-east-1"
-namespace                         = "example"
-stage                             = "test"
+namespace                         = "saic-oss"
+stage                             = "example"
 name                              = "terraform-devsecops-sandbox-config"
 controlplane_instance_type        = "t3a.medium"
 worker_instance_type              = "t3a.large"
