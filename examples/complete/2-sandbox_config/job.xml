@@ -1,0 +1,58 @@
+<org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject plugin="workflow-multibranch@2.21">
+    <actions/>
+    <description>{{ .Parameters.description }}</description>
+    <displayName>{{ .Parameters.name }}</displayName>
+    <properties>
+        <com.cloudbees.hudson.plugins.folder.properties.AuthorizationMatrixProperty>
+            <inheritanceStrategy class="org.jenkinsci.plugins.matrixauth.inheritance.InheritGlobalStrategy"/>
+            <permission>hudson.model.Item.Build:authenticated</permission>
+            <permission>hudson.model.Item.Read:authenticated</permission>
+            <permission>hudson.model.View.Read:authenticated</permission>
+        </com.cloudbees.hudson.plugins.folder.properties.AuthorizationMatrixProperty>
+        <org.jenkinsci.plugins.docker.workflow.declarative.FolderConfig plugin="docker-workflow@1.23">
+            <dockerLabel/>
+            <registry plugin="docker-commons@1.17"/>
+        </org.jenkinsci.plugins.docker.workflow.declarative.FolderConfig>
+    </properties>
+    <folderViews class="jenkins.branch.MultiBranchProjectViewHolder" plugin="branch-api@2.5.8">
+        <owner class="org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject" reference="../.."/>
+    </folderViews>
+    <healthMetrics>
+        <com.cloudbees.hudson.plugins.folder.health.WorstChildHealthMetric plugin="cloudbees-folder@6.14">
+            <nonRecursive>false</nonRecursive>
+        </com.cloudbees.hudson.plugins.folder.health.WorstChildHealthMetric>
+    </healthMetrics>
+    <icon class="jenkins.branch.MetadataActionFolderIcon" plugin="branch-api@2.5.8">
+        <owner class="org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject" reference="../.."/>
+    </icon>
+    <orphanedItemStrategy class="com.cloudbees.hudson.plugins.folder.computed.DefaultOrphanedItemStrategy" plugin="cloudbees-folder@6.14">
+        <pruneDeadBranches>true</pruneDeadBranches>
+        <daysToKeep>14</daysToKeep>
+        <numToKeep>-1</numToKeep>
+    </orphanedItemStrategy>
+    <triggers/>
+    <disabled>false</disabled>
+    <sources class="jenkins.branch.MultiBranchProject$BranchSourceList" plugin="branch-api@2.5.8">
+        <data>
+            <jenkins.branch.BranchSource>
+                <source class="jenkins.plugins.git.GitSCMSource" plugin="git@4.2.2">
+                    <id>0f6a5204-c1ee-44e3-89d2-b6a7a73243bd</id>
+                    <remote>{{ .Parameters.repository }}</remote>
+                    <credentialsId>{{ .Parameters.credentials }}</credentialsId>
+                    <traits>
+                        <jenkins.plugins.git.traits.BranchDiscoveryTrait/>
+                        <jenkins.plugins.git.traits.TagDiscoveryTrait/>
+                    </traits>
+                </source>
+                <strategy class="jenkins.branch.DefaultBranchPropertyStrategy">
+                    <properties class="empty-list"/>
+                </strategy>
+            </jenkins.branch.BranchSource>
+        </data>
+        <owner class="org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject" reference="../.."/>
+    </sources>
+    <factory class="org.jenkinsci.plugins.workflow.multibranch.WorkflowBranchProjectFactory">
+        <owner class="org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject" reference="../.."/>
+        <scriptPath>{{ .Parameters.scriptPath }}</scriptPath>
+    </factory>
+</org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject>

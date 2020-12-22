@@ -34,7 +34,7 @@ resource "gitlab_group_membership" "sandbox_user_memberships" {
   user_id      = gitlab_user.users[count.index].id
 }
 
-resource "gitlab_project" "venus-demo" {
+resource "gitlab_project" "demo" {
   name                                             = "venus-demo"
   namespace_id                                     = gitlab_group.configurable_group.id
   description                                      = "Modern web application with DevSecOps pipeline"
@@ -51,4 +51,11 @@ resource "gitlab_project" "venus-demo" {
   container_registry_enabled                       = true
   lfs_enabled                                      = true
   shared_runners_enabled                           = false
+}
+
+resource "gitlab_project_hook" "demo-hook" {
+  project         = "${var.gitlab_group_name}/${gitlab_project.demo.name}"
+  url             = "${var.jenkins_endpoint}/project/${gitlab_project.demo.name}"
+  push_events     = true
+  tag_push_events = true
 }
