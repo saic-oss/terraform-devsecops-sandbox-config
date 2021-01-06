@@ -38,3 +38,9 @@ override.tfvars
 #########################
 
 .idea
+
+#########################
+# Kubeconfig
+#########################
+
+**/tmp/kubeconfig.yaml
