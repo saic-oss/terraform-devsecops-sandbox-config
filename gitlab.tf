@@ -39,7 +39,7 @@ resource "gitlab_project" "demo" {
   namespace_id                                     = gitlab_group.configurable_group.id
   description                                      = "Modern web application with DevSecOps pipeline"
   visibility_level                                 = "private"
-  default_branch                                   = "master"
+  default_branch                                   = "main"
   issues_enabled                                   = true
   merge_requests_enabled                           = true
   only_allow_merge_if_pipeline_succeeds            = true
