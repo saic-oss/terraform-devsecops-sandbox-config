@@ -123,7 +123,7 @@ module "rancher-k8s-cluster" {
 }
 
 module "k8s-devsecops-sandbox" {
-  source                   = "git::https://github.com/saic-oss/terraform-k8s-devsecops-sandbox.git?ref=tags/0.4.4"
+  source                   = "git::https://github.com/saic-oss/terraform-k8s-devsecops-sandbox.git?ref=tags/0.4.6"
   cluster_issuer           = "letsencrypt-${var.letsencrypt_environment}"
   kubeconfig_file_contents = module.rancher-k8s-cluster.cluster_kubeconfig
   gitlab_host_name         = "gl.${random_pet.default.id}.${var.hosted_zone_domain_name}"
@@ -143,4 +143,9 @@ module "k8s-devsecops-sandbox" {
     null   = null,
     random = random
   }
+}
+
+resource "local_file" "kubeconfig" {
+  filename = "${path.module}/tmp/kubeconfig.yaml"
+  content  = module.rancher-k8s-cluster.cluster_kubeconfig
 }
