@@ -44,7 +44,7 @@ resource "gitlab_project" "demo" {
   merge_requests_enabled                           = true
   only_allow_merge_if_pipeline_succeeds            = true
   only_allow_merge_if_all_discussions_are_resolved = true
-  pipelines_enabled                                = true
+  pipelines_enabled                                = false
   initialize_with_readme                           = false
   import_url                                       = "https://github.com/saic-oss/venus-demo.git"
   approvals_before_merge                           = 1
