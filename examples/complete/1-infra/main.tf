@@ -62,12 +62,15 @@ module "subnets" {
 }
 
 module "rke_rancher_master_cluster" {
-  source                          = "git::https://github.com/saic-oss/terraform-aws-rke-rancher-master-cluster.git?ref=tags/0.4.0"
+  source                          = "git::https://github.com/saic-oss/terraform-aws-rke-rancher-master-cluster.git?ref=tags/0.4.1"
   additional_tag_map              = {}
+  description                     = var.description
   instance_type                   = var.controlplane_instance_type
   kubernetes_version              = var.master_cluster_kubernetes_version
   name                            = var.name
   namespace                       = var.namespace
+  owner                           = var.owner
+  repo                            = var.repo
   node_group_1_subnet_id          = module.subnets.public_subnet_ids[0]
   node_group_2_subnet_id          = module.subnets.public_subnet_ids[1]
   node_group_3_subnet_id          = module.subnets.public_subnet_ids[2]
@@ -93,11 +96,14 @@ module "rke_rancher_master_cluster" {
 }
 
 module "rancher-k8s-cluster" {
-  source                     = "git::https://github.com/saic-oss/terraform-aws-rancher-k8s-cluster.git?ref=tags/0.4.6"
+  source                     = "git::https://github.com/saic-oss/terraform-aws-rancher-k8s-cluster.git?ref=tags/0.4.7"
   additional_tag_map         = {}
+  description                = var.description
   kubernetes_version         = var.worker_cluster_kubernetes_version
   name                       = "${var.name}-workload"
   namespace                  = var.namespace
+  owner                      = var.owner
+  repo                       = var.repo
   stage                      = var.stage
   region                     = var.region
   letsencrypt_email          = var.letsencrypt_email
@@ -123,7 +129,7 @@ module "rancher-k8s-cluster" {
 }
 
 module "k8s-devsecops-sandbox" {
-  source                   = "git::https://github.com/saic-oss/terraform-k8s-devsecops-sandbox.git?ref=tags/0.4.8"
+  source                   = "git::https://github.com/saic-oss/terraform-k8s-devsecops-sandbox.git?ref=tags/0.4.9"
   cluster_issuer           = "letsencrypt-${var.letsencrypt_environment}"
   kubeconfig_file_contents = module.rancher-k8s-cluster.cluster_kubeconfig
   gitlab_host_name         = "gl.${random_pet.default.id}.${var.hosted_zone_domain_name}"
